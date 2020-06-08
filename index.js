@@ -10,6 +10,7 @@ mongoose.connect("mongodb://localhost/eshtery", {useNewUrlParser: true, useUnifi
     });
 let db = mongoose.connection;
 
+require("./routes")(app);
 
 app.listen(process.env.PORT, function(){
     console.log("Server started listening on port", process.env.PORT);
