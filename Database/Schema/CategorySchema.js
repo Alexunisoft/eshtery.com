@@ -18,4 +18,5 @@ const categorySchema = new schema({
     updated_at: {
         type: Date,
     }
-})
+});
+module.exports.CategorySchema = categorySchema;
