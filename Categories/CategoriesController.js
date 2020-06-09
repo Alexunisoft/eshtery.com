@@ -45,4 +45,19 @@ CategoryController.post('/', function store(req, res) {
         });
     }
 });
+/**
+ * create show function to get Category document from the DB
+ */
+CategoryController.get('/:id', function show(req, res) {
+    CategoryModel.findOne({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json(data);
+        }
+    });
+});
+
 module.exports.CategoryController = CategoryController;
