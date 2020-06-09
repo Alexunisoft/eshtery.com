@@ -64,10 +64,30 @@ CategoryController.get('/:id', function show(req, res) {
     });
 });
 /**
+ * create update function to update document for category in DB
+ */
+CategoryController.patch('/:id', function update(req, res) {
+    CategoryModel.findOneAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Category updated Successfully",
+            });
+
+        } else {
+            res.status(204);
+            res.json(data);
+        }
+    })
+});
+/**
  * create delete function to delete Category from the DB collection
  */
 CategoryController.delete('/:id', function(req, res) {
-    CategoryModel.deleteOne({ _id: req.params.id }, (err, data) => {
+    CategoryModel.deleteOne({ _id: req.params.id }, (err) => {
         if (err) {
             res.status(500);
             res.json(err);
