@@ -8,4 +8,4 @@ BrandSchema.plugin(autoIncrement.plugin, { model: 'Brand', startAt: 1 });
 /**
  * create model for Brand from BrandSchema
  */
-module.exports.Brand = model('Brand', BrandSchema);
+module.exports = model('Brand', BrandSchema);
