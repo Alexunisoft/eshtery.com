@@ -4,7 +4,7 @@ const autoIncrement = require('mongoose-auto-increment');
 /**
  * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
  */
-CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', startAt: 100 });
+CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', startAt: 1 });
 /**
  * create model for Category from the schema and export it as 
  * Category
