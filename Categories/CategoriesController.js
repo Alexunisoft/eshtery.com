@@ -56,8 +56,17 @@ CategoryController.get('/:id', function show(req, res) {
         } else if (data) {
             res.status(200);
             res.json(data);
+        } else {
+            res.status(204);
+            res.json(data);
+
         }
     });
 });
+/**
+ * 
+ */
+CategoryController.delete('/:id', function(req, res) {
 
+});
 module.exports.CategoryController = CategoryController;
