@@ -64,9 +64,19 @@ CategoryController.get('/:id', function show(req, res) {
     });
 });
 /**
- * 
+ * create delete function to delete Category from the DB collection
  */
 CategoryController.delete('/:id', function(req, res) {
-
+    CategoryModel.deleteOne({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json({
+                "status": "Category deleted Successfully",
+            });
+        }
+    });
 });
 module.exports.CategoryController = CategoryController;
