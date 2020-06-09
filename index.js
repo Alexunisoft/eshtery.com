@@ -5,7 +5,7 @@ const app = express();
 
 require("dotenv").config();
 
-mongoose.connect("mongodb://localhost/eshtery", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`mongodb://${process.env.DB_URL}/${process.env.DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(function() {
         console.log("connection established successfully")
     });
