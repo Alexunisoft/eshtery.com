@@ -13,8 +13,10 @@ CategoryController.get('/', function index(req, res) {
             res.status(500);
             res.json(err);
         } else if (data.length == 0) {
-            res.status(204); //204 to say that the server worked successfuly but there is no content
-            res.json(data);
+            res.status(404); //404 to say that the resourse not available
+            res.json({
+                "status": "Page Not Found, or Server Not Found "
+            });
         } else {
             res.status(200);
             res.json(data);
@@ -57,8 +59,10 @@ CategoryController.get('/:id', function show(req, res) {
             res.status(200);
             res.json(data);
         } else {
-            res.status(204);
-            res.json(data);
+            res.status(404);
+            res.json({
+                "status": "Page Not Found , Server Not Found or Resourse Not found "
+            });
 
         }
     });
@@ -78,8 +82,10 @@ CategoryController.patch('/:id', function update(req, res) {
             });
 
         } else {
-            res.status(204);
-            res.json(data);
+            res.status(404);
+            res.json({
+                "status": "Page Not Found, or Server Not Found "
+            });
         }
     })
 });
