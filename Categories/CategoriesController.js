@@ -14,25 +14,23 @@ CategoryController.get('/', function index(req, res) {
  * create store function to create new document from category model
  */
 CategoryController.post('/', function store(req, res) {
-    console.log(req.body);
-    res.json(req.body);
-    // if (req.body) {
-    //     let category = new CategoryModel({
-    //         name: JSON.parse(req.body).name,
-    //         created_at: Date.now(),
-    //     });
-    //     category.save((err) => {
-    //         if (err) {
-    //             console.log("there is error!!");
-    //             res.json(err);
-    //         } else {
-    //             console.log("there is no errors");
-    // res.json({
-    //     success: true,
-    //     message: "Category created successfully",
-    // });
-    //         }
-    //     });
-    // }
+    if (req.body) {
+        let category = new CategoryModel({
+            'name': req.body.name,
+            'created_at': Date.now(),
+        });
+        category.save((err) => {
+            if (err) {
+                console.error("there is error!!");
+                res.status(400);
+                res.json(err);
+            } else {
+                res.status(201);
+                res.json({
+                    "status": "Category created"
+                });
+            }
+        });
+    }
 });
 module.exports.CategoryController = CategoryController;
