@@ -23,7 +23,7 @@ BrandController.get('/', function index(req, res) {
     })
 });
 /**
- * store function to create new Brand document in DB
+ * create store function to create new Brand document in DB
  */
 BrandController.post('/', function store(req, res) {
     let brand_collection = new BrandModel({
@@ -38,6 +38,25 @@ BrandController.post('/', function store(req, res) {
             res.status(200);
             res.json({
                 "status": "Brand created Successfully",
+            });
+        }
+    });
+});
+/**
+ * craete show function to get document by ID from DB
+ */
+BrandController.get('/:id', function show(req, res) {
+    BrandModel.findById({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json(data);
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
             });
         }
     });
