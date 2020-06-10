@@ -6,5 +6,5 @@ module.exports = function(app) {
     app.use(bodyParser.json({}));
     app.use("/users", UsersController);
     app.use("/categories", CategoriesController);
-    app.use("brands", BrandsController);
+    app.use("/brands", BrandsController);
 };
