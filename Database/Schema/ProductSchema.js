@@ -1,4 +1,5 @@
 const schema = require('mongoose').Schema;
+const autoIncrement = require('mongoose-auto-increment'); // require mongoose-auto-increment
 /**
  * create Product schema to create model that has some fields 
  * name , description , price
@@ -31,3 +32,13 @@ let ProductSchema = new schema({
         required: true,
     }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
+
+/**
+ * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
+ */
+ProductSchema.plugin(autoIncrement.plugin, { model: 'Product', startAt: 1 });
+
+/**
+ * export productSchema
+ */
+module.exports.ProductSchema = ProductSchema;
