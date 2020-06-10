@@ -7,7 +7,7 @@ const ProductModel = require('./Product').ProductModel;
  * create index function to get all documents in Products collection
  */
 ProductsController.get('/', function index(req, res) {
-    ProductModel.find({}).populate('brand').exec((err, data) => {
+    ProductModel.find({}).populate(['brand', 'category']).exec((err, data) => {
         if (err) {
             res.status(500);
             res.json(err);
