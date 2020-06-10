@@ -65,6 +65,27 @@ ProductsController.get('/:id', function show(req, res) {
     });
 });
 /**
+ * create destroy function to delete Product document from DB
+ */
+ProductsController.delete('/:id', function destroy(req, res) {
+    ProductModel.findByIdAndDelete({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Product deleted Successfully "
+            });
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
+/**
  * export ProductsController
  */
 module.exports.ProductsController = ProductsController;
