@@ -20,5 +20,9 @@ let ProductSchema = new schema({
             true, "Product price is required "
         ]
     },
-
+    brand_id: {
+        type: schema.Types.ObjectId,
+        ref: 'Brand',
+        required: true,
+    }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
