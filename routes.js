@@ -1,6 +1,6 @@
 const UsersController = require("./Users/UsersController").UsersController;
 const CategoriesController = require("./Categories/CategoriesController").CategoryController;
-const BrandsController = require('./Brands/BrandsController').BrandController;
+const BrandsController = require('./Brands/BrandsController').BrandsController;
 const bodyParser = require('body-parser');
 module.exports = function(app) {
     app.use(bodyParser.json({}));

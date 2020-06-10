@@ -1,4 +1,4 @@
-const BrandController = require('express').Router();
+const BrandsController = require('express').Router();
 const BrandModel = require('./Brand');
 /**
  * Brand Controller
@@ -6,7 +6,7 @@ const BrandModel = require('./Brand');
 /**
  * create index function to get all documents in Brands Collection
  */
-BrandController.get('/', function index(req, res) {
+BrandsController.get('/', function index(req, res) {
     BrandModel.find({}, (err, data) => {
         if (err) {
             res.status(500);
@@ -25,7 +25,7 @@ BrandController.get('/', function index(req, res) {
 /**
  * create store function to create new Brand document in DB
  */
-BrandController.post('/', function store(req, res) {
+BrandsController.post('/', function store(req, res) {
     let brand_collection = new BrandModel({
         'name': req.body.name,
         'created_at': Date.now(),
@@ -45,7 +45,7 @@ BrandController.post('/', function store(req, res) {
 /**
  * craete show function to get document by ID from DB
  */
-BrandController.get('/:id', function show(req, res) {
+BrandsController.get('/:id', function show(req, res) {
     BrandModel.findById({ _id: req.params.id }, (err, data) => {
         if (err) {
             res.status(500);
@@ -64,7 +64,7 @@ BrandController.get('/:id', function show(req, res) {
 /**
  * create update function to update existance brand document in DB
  */
-BrandController.patch('/:id', function update(req, res) {
+BrandsController.patch('/:id', function update(req, res) {
     BrandModel.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
         if (err) {
             res.status(500);
@@ -85,7 +85,7 @@ BrandController.patch('/:id', function update(req, res) {
 /**
  * create destroy function to delete brand document from Brands Collection in DB
  */
-BrandController.delete('/:id', function destroy(req, res) {
+BrandsController.delete('/:id', function destroy(req, res) {
     BrandModel.findByIdAndDelete({ _id: req.params.id }, (err, data) => {
         if (err) {
             res.status(500);
@@ -103,4 +103,4 @@ BrandController.delete('/:id', function destroy(req, res) {
         }
     });
 });
-module.exports.BrandController = BrandController;
+module.exports.BrandsController = BrandsController;
