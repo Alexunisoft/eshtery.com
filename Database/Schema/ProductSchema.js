@@ -21,12 +21,12 @@ let ProductSchema = new schema({
             true, "Product price is required "
         ]
     },
-    brand_id: {
+    brand: {
         type: schema.Types.Number,
         ref: 'Brand',
         required: true,
     },
-    category_id: {
+    category: {
         type: schema.Types.Number,
         ref: 'Category',
         required: true,
