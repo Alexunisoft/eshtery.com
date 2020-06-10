@@ -27,8 +27,7 @@ BrandsController.get('/', function index(req, res) {
  */
 BrandsController.post('/', function store(req, res) {
     let brand_collection = new BrandModel({
-        'name': req.body.name,
-        'created_at': Date.now(),
+        'name': req.body.name
     });
     brand_collection.save((err) => {
         if (err) {

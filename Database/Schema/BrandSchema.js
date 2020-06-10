@@ -7,11 +7,6 @@ const BrandSchema = new schema({
     name: {
         type: String,
         required: [true, "Brand name is required"]
-    },
-    created_at: {
-        type: Date,
-        required: true,
-    },
-    updated_at: String,
-});
+    }
+}, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 module.exports.BrandSchema = BrandSchema;
