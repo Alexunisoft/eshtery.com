@@ -29,4 +29,4 @@ BrandController.post('/', function store(req, res) {
         }
     });
 });
-module.exports = BrandController;
+module.exports.BrandController = BrandController;
