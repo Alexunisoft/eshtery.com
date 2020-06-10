@@ -61,4 +61,25 @@ BrandController.get('/:id', function show(req, res) {
         }
     });
 });
+/**
+ * create update function to update existance brand document in DB
+ */
+BrandController.patch('/:id', function update(req, res) {
+    BrandModel.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Brand updated Successfully "
+            });
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+})
 module.exports.BrandController = BrandController;
