@@ -35,7 +35,7 @@ BrandsController.post('/', function store(req, res) {
             res.status(500);
             res.json(err);
         } else {
-            res.status(200);
+            res.status(201);
             res.json({
                 "status": "Brand created Successfully",
             });
