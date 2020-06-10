@@ -24,5 +24,10 @@ let ProductSchema = new schema({
         type: schema.Types.ObjectId,
         ref: 'Brand',
         required: true,
+    },
+    category_id: {
+        type: schema.Types.ObjectId,
+        ref: 'Category',
+        required: true,
     }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
