@@ -13,7 +13,7 @@ BrandController.get('/', function index(req, rea) {
  * store function to create new Brand document in DB
  */
 BrandController.post('/', function store(req, res) {
-    let brand_collection = new({
+    let brand_collection = new BrandModel({
         'name': req.body.name,
         'created_at': Date.now(),
     });
