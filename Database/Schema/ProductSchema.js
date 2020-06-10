@@ -22,12 +22,12 @@ let ProductSchema = new schema({
         ]
     },
     brand_id: {
-        type: schema.Types.ObjectId,
+        type: schema.Types.Number,
         ref: 'Brand',
         required: true,
     },
     category_id: {
-        type: schema.Types.ObjectId,
+        type: schema.Types.Number,
         ref: 'Category',
         required: true,
     }
