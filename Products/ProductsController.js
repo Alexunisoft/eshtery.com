@@ -4,6 +4,25 @@ const ProductModel = require('./Product').ProductModel;
  * ProductsController
  */
 /**
+ * create index function to get all documents in Products collection
+ */
+ProductsController.get('/', function index(req, res) {
+    ProductModel.find({}).populate('brand').exec((err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json(data);
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
+/**
  * create store function to create new product document in Product Collection in DB
  */
 ProductsController.post('/', function store(req, res) {
@@ -11,8 +30,8 @@ ProductsController.post('/', function store(req, res) {
             'name': req.body.name,
             'description': req.body.description,
             'price': req.body.price,
-            'brand_id': req.body.brand_id,
-            'category_id': req.body.category_id,
+            'brand': req.body.brand,
+            'category': req.body.category,
         });
         product.save((err) => {
             if (err) {
