@@ -65,6 +65,27 @@ ProductsController.get('/:id', function show(req, res) {
     });
 });
 /**
+ * create update function to update product document in DB
+ */
+ProductsController.patch('/:id', function update(req, res) {
+    ProductModel.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Product updated Successfully ",
+            });
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
+/**
  * create destroy function to delete Product document from DB
  */
 ProductsController.delete('/:id', function destroy(req, res) {
