@@ -1,5 +1,6 @@
 const ProductsController = require('express').Router();
 const ProductModel = require('./Product').ProductModel;
+const formidable = require('formidable');
 /**
  * ProductsController
  */
