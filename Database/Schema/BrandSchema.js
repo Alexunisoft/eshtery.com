@@ -9,7 +9,7 @@ const BrandSchema = new schema({
         required: [true, "Brand name is required"]
     },
     created_at: {
-        type: true,
+        type: Date,
         required: true,
     },
     updated_at: String,
