@@ -81,5 +81,26 @@ BrandController.patch('/:id', function update(req, res) {
             });
         }
     });
-})
+});
+/**
+ * create destroy function to delete brand document from Brands Collection in DB
+ */
+BrandController.delete('/:id', function destroy(req, res) {
+    BrandModel.findByIdAndDelete({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Brand deleted Successfully "
+            });
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
 module.exports.BrandController = BrandController;
