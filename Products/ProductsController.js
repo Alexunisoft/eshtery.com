@@ -1,6 +1,7 @@
 const ProductsController = require('express').Router();
 const ProductModel = require('./Product').ProductModel;
 const formidable = require('formidable');
+const fs = require('fs');
 /**
  * ProductsController
  */
@@ -27,24 +28,39 @@ ProductsController.get('/', function index(req, res) {
  * create store function to create new product document in Product Collection in DB
  */
 ProductsController.post('/', function store(req, res) {
-    let product = new ProductModel({
-        'name': req.body.name,
-        'description': req.body.description,
-        'price': req.body.price,
-        'brand': req.body.brand,
-        'category': req.body.category,
-    });
-    product.save((err) => {
+    // { uploadDir: '../Public/ProductImages/' }
+    const form = formidable.IncomingForm();
+    const rootDir = process.cwd();
+    form.parse(req);
+    console.log(__dirname);
+    console.log(__filename);
+    form.parse(req, (err, fields, file) => {
         if (err) {
-            res.status(500);
+            res.status(502);
             res.json(err);
         } else {
-            res.status(201);
-            res.json({
-                "status": "Product created successfully "
-            });
+            // file.image.path = '../Public/ProductImages/' + file.image.name;
+            res.json([fields, file]);
         }
     });
+    // let product = new ProductModel({
+    //     'name': req.body.name,
+    //     'description': req.body.description,
+    //     'price': req.body.price,
+    //     'brand': req.body.brand,
+    //     'category': req.body.category,
+    // });
+    // product.save((err) => {
+    //     if (err) {
+    //         res.status(500);
+    //         res.json(err);
+    //     } else {
+    //         res.status(201);
+    //         res.json({
+    //             "status": "Product created successfully "
+    //         });
+    //     }
+    // });
 });
 /**
  * create show function to get Product document
