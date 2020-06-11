@@ -24,6 +24,11 @@ let ShopSchema = new schema({
     }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 /**
+ * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
+ */
+ShopSchema.plugin(autoIncrement.plugin, { model: 'Shop', startAt: 1 });
+
+/**
  * export shop schema
  */
 module.exports.ShopSchema = ShopSchema;
