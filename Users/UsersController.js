@@ -42,4 +42,7 @@ if(err){
 }
 });
 })
+UsersController.post("/login",function login(req,res){
+    
+})
 module.exports.UsersController = UsersController;
