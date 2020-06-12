@@ -1,4 +1,5 @@
 const schema = require("mongoose").Schema;
+const hashSync = require("bcrypt").hashSync;
 
 /**
  * UserSchema Collection definition
@@ -13,5 +14,13 @@ const UserSchema = new schema({
    updatedAt:"updated_at"
 }}
 );
-
+/**
+ * Check if given password hash conforms to that stored in the database.
+ * @param {string} password password to validate.
+ * @returns {boolean}.
+ */
+UserSchema.methods.isValidPassword = function(password){
+    let salt=10;
+    return hashSync(password,salt) === this.password;
+};
 module.exports.UserSchema = UserSchema;
