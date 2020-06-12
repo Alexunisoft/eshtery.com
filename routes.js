@@ -3,6 +3,7 @@ const CategoriesController = require("./Categories/CategoriesController").Catego
 const BrandsController = require('./Brands/BrandsController').BrandsController;
 const ProductsController = require('./Products/ProductsController').ProductsController;
 const bodyParser = require('body-parser');
+
 module.exports = function(app) {
     app.use(bodyParser.json({}));
     app.use("/users", UsersController);
