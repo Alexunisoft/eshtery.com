@@ -3,7 +3,7 @@ const model = require("mongoose").model;
 
 /**
  * Definition of the simple demo method.
- * @returns void.
+ * @returns void.ئ
  */
 UserSchema.methods.sayHello = function(){
     console.log("Hello, Developer");
