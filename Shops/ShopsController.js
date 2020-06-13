@@ -1,5 +1,3 @@
-const e = require('express');
-
 const ShopsController = require('express').Router();
 const ShopModel = require('./Shop').ShopModel;
 /**
@@ -12,7 +10,6 @@ ShopsController.get('/', function index(req, res) {
     ShopModel.find({}).populate(['user']).exec((err, data) => {
         if (err) {
             res.status(500);
-            console.error(err);
             res.json(err);
         } else if (data) {
             res.status(200);
