@@ -29,7 +29,7 @@ ShopsController.get('/', function index(req, res) {
 /**
  * create Store function to create new document of Shop
  */
-ShopsController.post('/', function Store(req, res) {
+ShopsController.post('/', function store(req, res) {
     let Shop = new ShopModel({
         "name": req.body.name,
         "description": req.body.description,
