@@ -5,7 +5,7 @@ const hashSync = require("bcrypt").hashSync;
  * UserSchema Collection definition
  */
 const UserSchema = new schema({
-    "name": {type:String,required:[true,"Where's the name yalla !!"]},
+    "name": {type:String,required:[true,"The name is required"]},
     "email": {type:String,unique:true,required:true},
     "password": {type:String,required:true},
     
