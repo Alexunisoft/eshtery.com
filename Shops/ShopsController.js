@@ -67,6 +67,27 @@ ShopsController.get('/:id', function show(req, res) {
     });
 });
 /**
+ * create update function for Shop Document in DB
+ */
+ShopsController.patch('/:id', function update(req, res) {
+    ShopModel.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Shop updated successfully "
+            });
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
+/**
  * create destroy function to delete Shop document from DB
  */
 ShopsController.delete('/:id', function destroy(req, res) {
