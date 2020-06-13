@@ -3,4 +3,5 @@ const model = require('mongoose').model;
 /**
  * create Shop model
  */
-module.exports.ShopModel = new model('Shop', ShopSchema);
+let ShopModel = new model('Shop', ShopSchema);
+module.exports.ShopModel = ShopModel;

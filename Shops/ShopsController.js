@@ -1,5 +1,3 @@
-const { json } = require('body-parser');
-
 const ShopsController = require('express').Router();
 const ShopModel = require('./Shop').ShopModel;
 /**
@@ -9,9 +7,10 @@ const ShopModel = require('./Shop').ShopModel;
  * create Index function to get collection of Shops
  */
 ShopsController.get('/', function index(req, res) {
-    ShopModel.find({}).populate('user').exec((err, data) => {
+    ShopModel.find({}).populate(['user']).exec((err, data) => {
         if (err) {
             res.status(500);
+            console.error(err);
             res.json(err);
         } else if (data) {
             res.status(200);
@@ -42,6 +41,25 @@ ShopsController.post('/', function Store(req, res) {
             res.status(200);
             res.json({
                 "status": "Shop created Successfully "
+            });
+        }
+    });
+});
+/**
+ * create Show function to get Shop document by ID from DB
+ */
+ShopsController.get('/:id', function show(req, res) {
+    ShopModel.findById({ _id: req.params.id }).populate('user').exec((err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json(data);
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
             });
         }
     });
