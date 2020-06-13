@@ -20,7 +20,7 @@ AuthController.post("/register", function register(req, res) {
 
         } else {
             res.status(201);
-            res.send("CREATED <3");
+            res.send("CREATED");
         }
     });
 })
