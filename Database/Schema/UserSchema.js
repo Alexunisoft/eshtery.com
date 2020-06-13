@@ -23,4 +23,5 @@ UserSchema.methods.isValidPassword = function(password){
     let salt=10;
     return hashSync(password,salt) === this.password;
 };
+
 module.exports.UserSchema = UserSchema;
