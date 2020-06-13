@@ -1,3 +1,5 @@
+const e = require('express');
+
 const ShopsController = require('express').Router();
 const ShopModel = require('./Shop').ShopModel;
 /**
@@ -56,6 +58,27 @@ ShopsController.get('/:id', function show(req, res) {
         } else if (data) {
             res.status(200);
             res.json(data);
+        } else {
+            res.status(404);
+            res.json({
+                "status": "Resourse Not found "
+            });
+        }
+    });
+});
+/**
+ * create destroy function to delete Shop document from DB
+ */
+ShopsController.delete('/:id', function destroy(req, res) {
+    ShopModel.findByIdAndDelete({ _id: req.params.id }, (err, data) => {
+        if (err) {
+            res.status(500);
+            res.json(err);
+        } else if (data) {
+            res.status(200);
+            res.json({
+                "status": "Shop deleted successfully "
+            });
         } else {
             res.status(404);
             res.json({
