@@ -7,7 +7,7 @@ const ProductModel = require('./Product').ProductModel;
  * create index function to get all documents in Products collection
  */
 ProductsController.get('/', function index(req, res) {
-    ProductModel.find({}).populate(['brand', 'category']).exec((err, data) => {
+    ProductModel.find({}).populate(['brand', 'category', 'shop']).exec((err, data) => {
         if (err) {
             res.status(500);
             res.json(err);
@@ -32,6 +32,7 @@ ProductsController.post('/', function store(req, res) {
         'price': req.body.price,
         'brand': req.body.brand,
         'category': req.body.category,
+        'shop': req.body.shop,
     });
     product.save((err) => {
         if (err) {
@@ -49,7 +50,7 @@ ProductsController.post('/', function store(req, res) {
  * create show function to get Product document
  */
 ProductsController.get('/:id', function show(req, res) {
-    ProductModel.findById({ _id: req.params.id }, ).populate(['brand', 'category']).exec((err, data) => {
+    ProductModel.findById({ _id: req.params.id }, ).populate(['brand', 'category', 'shop']).exec((err, data) => {
         if (err) {
             res.status(500);
             res.json(err);
