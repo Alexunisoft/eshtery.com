@@ -1,5 +1,6 @@
 const UsersController = require("express").Router();
 const User = require("./User");
+
 // definition of various routes goes below...
 
 /**
@@ -7,7 +8,11 @@ const User = require("./User");
  * @returns void.
  */
 UsersController.get("/", function index(req, res) {
-    res.send("Hello from index after Failure");
+    User.find({}).exec(function(err, data) {
+        if (!err) {
+            res.json(data);
+        }
+    });
 });
 
 /**

@@ -1,6 +1,7 @@
 const schema = require("mongoose").Schema;
 const hashSync = require("bcrypt").hashSync;
 
+const autoIncrement = require('mongoose-auto-increment');
 /**
  * UserSchema Collection definition
  */
@@ -23,5 +24,10 @@ UserSchema.methods.isValidPassword = function(password){
     let salt=10;
     return hashSync(password,salt) === this.password;
 };
+   
+/**
+ * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
+ */
+UserSchema.plugin(autoIncrement.plugin, { model: 'User', startAt: 1 });
 
 module.exports.UserSchema = UserSchema;
