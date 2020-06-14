@@ -1,4 +1,5 @@
 const {initializeConfig} = require("./Config/MasterConfig");
+const {initializeMiddleware} = require("./Middleware/Middleware");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -17,7 +18,7 @@ let db = mongoose.connection;
  */
 initialize(db);
 initializeConfig();
-require("./Middleware/Middleware")(app);
+initializeMiddleware(app);
 require("./routes")(app);
 
 app.listen(process.env.PORT, function() {

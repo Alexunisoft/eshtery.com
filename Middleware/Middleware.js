@@ -7,7 +7,7 @@
 const bodyParser = require('body-parser');
 const expressSession = require("express-session");
 
-module.exports = function(app) {
+module.exports.initializeMiddleware = function(app) {
     app.use(bodyParser.json({}));
     app.use(expressSession({secret:"secret"}));
     app.use(passport.initialize());
