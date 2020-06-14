@@ -1,14 +1,30 @@
 const schema = require("mongoose").Schema;
+const hashSync = require("bcrypt").hashSync;
+
 const autoIncrement = require('mongoose-auto-increment');
 /**
  * UserSchema Collection definition
  */
 const UserSchema = new schema({
-    "name": String,
-    "email": String,
-    "created_at": Date,
-    "updated_at": Date,
-});
+    "name": {type:String,required:[true,"The name is required"]},
+    "email": {type:String,unique:true,required:true},
+    "password": {type:String,required:true},
+    
+},{timestamps:{
+   createdAt:"created_at",
+   updatedAt:"updated_at"
+}}
+);
+/**
+ * Check if given password hash conforms to that stored in the database.
+ * @param {string} password password to validate.
+ * @returns {boolean}.
+ */
+UserSchema.methods.isValidPassword = function(password){
+    let salt=10;
+    return hashSync(password,salt) === this.password;
+};
+   
 /**
  * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
  */

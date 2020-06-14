@@ -22,4 +22,5 @@ UsersController.get("/", function index(req, res) {
 UsersController.post("/", function store(req, res) {
     res.send("post handler");
 });
+
 module.exports.UsersController = UsersController;
