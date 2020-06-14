@@ -30,6 +30,11 @@ let ProductSchema = new schema({
         type: schema.Types.Number,
         ref: 'Category',
         required: true,
+    },
+    shop: {
+        type: schema.Types.Number,
+        ref: 'Shop',
+        required: true,
     }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 

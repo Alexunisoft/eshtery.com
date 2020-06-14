@@ -7,7 +7,7 @@ const ShopModel = require('./Shop').ShopModel;
  * create Index function to get collection of Shops
  */
 ShopsController.get('/', function index(req, res) {
-    ShopModel.find({}).populate(['user']).exec((err, data) => {
+    ShopModel.find({}).populate(['user', 'products']).exec((err, data) => {
         if (err) {
             res.status(500);
             res.json(err);
@@ -30,14 +30,15 @@ ShopsController.post('/', function store(req, res) {
     let Shop = new ShopModel({
         "name": req.body.name,
         "description": req.body.description,
-        "user": req.body.user
+        "user": req.body.user,
+        "products": req.body.products,
     });
     Shop.save((err) => {
         if (err) {
             res.status(500);
             res.json(err);
         } else {
-            res.status(200);
+            res.status(201);
             res.json({
                 "status": "Shop created Successfully "
             });
@@ -48,7 +49,7 @@ ShopsController.post('/', function store(req, res) {
  * create Show function to get Shop document by ID from DB
  */
 ShopsController.get('/:id', function show(req, res) {
-    ShopModel.findById({ _id: req.params.id }).populate('user').exec((err, data) => {
+    ShopModel.findById({ _id: req.params.id }).populate(['user', 'products']).exec((err, data) => {
         if (err) {
             res.status(500);
             res.json(err);
