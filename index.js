@@ -1,4 +1,4 @@
-require("./Config/MasterConfig")();
+const {initializeConfig} = require("./Config/MasterConfig");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -16,6 +16,7 @@ let db = mongoose.connection;
  * initialize mongoose-auto-increment
  */
 initialize(db);
+initializeConfig();
 require("./Middleware/Middleware")(app);
 require("./routes")(app);
 
