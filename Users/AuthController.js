@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const User = require("./User");
-const passport = require("passport");
 const AuthController = require("express").Router();
 /**
  * register user and hashing the password
