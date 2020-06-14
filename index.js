@@ -17,7 +17,13 @@ let db = mongoose.connection;
  * initialize mongoose-auto-increment
  */
 initialize(db);
+/**
+ * initialize application-wide configuration files.
+ */
 initializeConfig();
+/**
+ * initialize application middleware.
+ */
 initializeMiddleware(app);
 require("./routes")(app);
 
