@@ -21,11 +21,7 @@ let ShopSchema = new schema({
         type: schema.Types.Number,
         ref: 'User',
         required: true,
-    },
-    products: [{
-        type: Number,
-        ref: 'Product'
-    }]
+    }
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 /**
  * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
