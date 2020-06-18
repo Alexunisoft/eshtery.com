@@ -10,13 +10,6 @@ const categorySchema = new schema({
         required: [true,
             "Category name is required",
         ]
-    },
-    created_at: {
-        type: Date,
-        required: true
-    },
-    updated_at: {
-        type: Date,
     }
-});
+}, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 module.exports.CategorySchema = categorySchema;
