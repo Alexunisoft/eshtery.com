@@ -1,4 +1,5 @@
 const schema = require('mongoose').Schema;
+const ProductModel = require('../../Products/Product').ProductModel;
 const autoIncrement = require('mongoose-auto-increment');
 /**
  * create Shop schema to create Shop model with name , description fields and 
@@ -27,7 +28,13 @@ let ShopSchema = new schema({
  * Mongoose plugin that auto-increments any ID field on your schema every time a document is saved.
  */
 ShopSchema.plugin(autoIncrement.plugin, { model: 'Shop', startAt: 1 });
-
+/**
+ * Schema method to get all products that this Shop has 
+ * @returns promise
+ */
+ShopSchema.methods.getAllProducts = async function() {
+    return await ProductModel.find({ 'shop': this._id });
+};
 /**
  * export shop schema
  */
