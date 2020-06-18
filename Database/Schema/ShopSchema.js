@@ -1,7 +1,6 @@
 const schema = require('mongoose').Schema;
 const ProductModel = require('../../Products/Product').ProductModel;
 const autoIncrement = require('mongoose-auto-increment');
-const { json } = require('express');
 /**
  * create Shop schema to create Shop model with name , description fields and 
  * ref to user who is the owner
