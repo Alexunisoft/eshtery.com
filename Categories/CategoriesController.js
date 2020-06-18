@@ -31,7 +31,6 @@ CategoryController.post('/', function store(req, res) {
     if (req.body) {
         let category = new CategoryModel({
             'name': req.body.name,
-            'created_at': Date.now(),
         });
         category.save((err) => {
             if (err) {
