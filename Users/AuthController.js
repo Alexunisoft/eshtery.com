@@ -26,9 +26,11 @@ AuthController.post("/register", function register(req, res) {
 
 AuthController.post('/login',
     passport.authenticate('local', {
-        successRedirect: "/users",
-        failureRedirect: '/users'
-    })
+        failureRedirect: '/auth/login'
+    }),
+    function(req, res){
+        res.redirect("/users/home");
+    }
 );
 
 module.exports = AuthController;
