@@ -30,7 +30,7 @@ let ShopSchema = new schema({
 ShopSchema.plugin(autoIncrement.plugin, { model: 'Shop', startAt: 1 });
 /**
  * Schema method to get all products that this Shop has 
- * return promise
+ * @returns promise
  */
 ShopSchema.methods.getAllProducts = async function() {
     return await ProductModel.find({ 'shop': this._id });
