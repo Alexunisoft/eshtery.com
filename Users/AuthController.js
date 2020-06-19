@@ -1,4 +1,5 @@
-const bcrypt = require("bcrypt");
+const fs = require("fs");
+const {hashSync} = require("bcrypt");
 const User = require("./User");
 const AuthController = require("express").Router();
 /**
@@ -6,7 +7,7 @@ const AuthController = require("express").Router();
  */
 AuthController.post("/register", function register(req, res) {
     let salt = 10;
-    let hash = bcrypt.hashSync(req.body.password, salt);
+    let hash = hashSync(req.body.password, salt);
     let user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -18,17 +19,25 @@ AuthController.post("/register", function register(req, res) {
             res.json(err);
 
         } else {
-            res.status(201);
-            res.send("CREATED");
+            req.login(req.user, function(err){
+                if(!err){
+                    res.redirect("/users/home");
+                } else {
+                    res.redirect("/auth/login");
+                }
+            });
         }
     });
 })
 
+/**
+ * Main authentication route for the whole application.
+ */
 AuthController.post('/login',
     passport.authenticate('local', {
-        failureRedirect: '/auth/login'
+        failureRedirect: "/auth/form",
     }),
-    function(req, res){
+    function (req, res) {
         res.redirect("/users/home");
     }
 );
