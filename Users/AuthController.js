@@ -42,4 +42,19 @@ AuthController.post('/login',
     }
 );
 
+AuthController.get("/form", function(req, res){
+    let form = fs.readFileSync(__dirname + "/views/login.html");
+    res.status(200);
+    res.set({"Content-Type": "text/html"});
+    res.send(form);
+});
+
+/**
+ * Logout route to unauthenticate currently logged in user.
+ */
+AuthController.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/auth/form");
+});
+
 module.exports = AuthController;
