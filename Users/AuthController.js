@@ -1,4 +1,5 @@
-const bcrypt = require("bcrypt");
+const fs = require("fs");
+const {hashSync} = require("bcrypt");
 const User = require("./User");
 const AuthController = require("express").Router();
 /**
@@ -6,7 +7,7 @@ const AuthController = require("express").Router();
  */
 AuthController.post("/register", function register(req, res) {
     let salt = 10;
-    let hash = bcrypt.hashSync(req.body.password, salt);
+    let hash = hashSync(req.body.password, salt);
     let user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -18,17 +19,42 @@ AuthController.post("/register", function register(req, res) {
             res.json(err);
 
         } else {
-            res.status(201);
-            res.send("CREATED");
+            req.login(req.user, function(err){
+                if(!err){
+                    res.redirect("/users/home");
+                } else {
+                    res.redirect("/auth/login");
+                }
+            });
         }
     });
 })
 
+/**
+ * Main authentication route for the whole application.
+ */
 AuthController.post('/login',
     passport.authenticate('local', {
-        successRedirect: "/users",
-        failureRedirect: '/users'
-    })
+        failureRedirect: "/auth/form",
+    }),
+    function (req, res) {
+        res.redirect("/users/home");
+    }
 );
+
+AuthController.get("/form", function(req, res){
+    let form = fs.readFileSync(__dirname + "/views/login.html");
+    res.status(200);
+    res.set({"Content-Type": "text/html"});
+    res.send(form);
+});
+
+/**
+ * Logout route to unauthenticate currently logged in user.
+ */
+AuthController.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/auth/form");
+});
 
 module.exports = AuthController;
