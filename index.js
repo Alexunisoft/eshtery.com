@@ -1,5 +1,6 @@
 const {initializeConfig} = require("./Config/MasterConfig");
 const {initializeMiddleware} = require("./Middleware/Middleware");
+const {auth} = require("./Middleware/RouteMiddleware/");
 
 const express = require("express");
 const mongoose = require("mongoose");
