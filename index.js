@@ -1,6 +1,7 @@
 const {initializeConfig} = require("./Config/MasterConfig");
 const {initializeMiddleware} = require("./Middleware/Middleware");
 const {auth} = require("./Middleware/RouteMiddleware/");
+const {initializeHelpers} = require("./Helpers/helpers");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -27,6 +28,8 @@ initializeConfig();
  */
 initializeMiddleware(app);
 require("./routes")(app);
+
+initializeHelpers();
 
 app.listen(process.env.PORT, function() {
     console.log("Server started listening on port", process.env.PORT);
