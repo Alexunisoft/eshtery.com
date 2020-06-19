@@ -29,7 +29,7 @@ UsersController.post("/", function store(req, res) {
 UsersController.get("/home", function (req, res){
     // redirection logic for each user role in the system.. (admin, seller, buyer).
     // goes here..
-    res.send("Welcome to home page");
+    res.send(req.session);
 });
 
 module.exports.UsersController = UsersController;
