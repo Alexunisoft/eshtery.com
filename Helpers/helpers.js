@@ -7,7 +7,7 @@
 const {normalize} = require("path");
 const fs = require("fs");
 
-module.exports.initializeHelpers = function () {
+module.exports.initializeHelpers = async function () {
 
     /**
      * Autoloads any given set of files from within a certain path.
