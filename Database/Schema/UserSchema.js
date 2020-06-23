@@ -9,7 +9,11 @@ const UserSchema = new schema({
         "name": {type: String, required: [true, "The name is required"]},
         "email": {type: String, unique: true, required: true},
         "password": {type: String, required: true},
-
+        "role": {
+            type: String,
+            enum: ["admin", "seller", "buyer"],
+            required: true
+        }
     }, {
         timestamps: {
             createdAt: "created_at",
